@@ -49,7 +49,7 @@ function reduce(array, fn, initial) {
   let result = initial;
 
   for (let i = 0; i <= array.length - 1; i++) {
-    if (result) {
+    if (result !== undefined) {
       result = fn(result, array[i], i, array);
     } else {
       result = array[i];
