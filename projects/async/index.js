@@ -30,6 +30,7 @@
  */
 
 import './towns.html';
+import { loadAndSortTowns } from './functions';
 
 const homeworkContainer = document.querySelector('#app');
 
@@ -39,31 +40,7 @@ const homeworkContainer = document.querySelector('#app');
  Массив городов пожно получить отправив асинхронный запрос по адресу
  https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json
  */
-function loadTowns() {
-  return new Promise(function (resolve, reject) {
-    const url =
-      'https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json';
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
-    xhr.responseType = 'json';
-    xhr.send();
-    xhr.onerror = function () {
-      reject();
-    };
-    xhr.onload = function () {
-      if (xhr.status !== 200) {
-        reject();
-      } else {
-        const towns = xhr.response.sort(function (a, b) {
-          if (a.name > b.name) return 1;
-          if (a.name < b.name) return -1;
-          return 0;
-        });
-        resolve(towns);
-      }
-    };
-  });
-}
+const loadTowns = loadAndSortTowns;
 
 /*
  Функция должна проверять встречается ли подстрока chunk в строке full
