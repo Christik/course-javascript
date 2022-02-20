@@ -1,0 +1,141 @@
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+*:focus { outline: none; }
+*:active, *:hover { outline: 0; }
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+button,
+select {
+    text-transform: none;
+}
+html,
+body,
+button,
+input,
+select,
+textarea {
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+}
+html {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #000;
+}
+
+/* ==========================================================================
+   Map
+   ========================================================================== */
+
+.map {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* ==========================================================================
+   Reviews
+   ========================================================================== */
+
+.reviews {
+    max-height: 160px;
+    overflow: auto;
+    border-bottom: solid 1px #e7e7e7;
+    margin: 0 0 20px;
+}
+.review {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 0 0 20px;
+    color: #8d8d8d;
+}
+.review__header > div {
+    display: inline;
+    margin: 0 .5em 0 0;
+}
+.review__name {
+    color: #000;
+}
+.review__location_link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   Form
+   ========================================================================== */
+
+.form {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #000;
+    width: 310px;
+}
+.form__title {
+    font-weight: 700;
+    margin: 0 0 10px;
+}
+
+input, textarea {
+    border: solid 1px #cfcfcf;
+    border-radius: 3px;
+    display: block;
+    margin: 0 0 10px;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    width: 100%;
+}
+input:focus,
+textarea:focus {
+    border-color: #1371C8;
+}
+input.is-error,
+textarea.is-error {
+    border-color: #ec4545;
+}
+textarea {
+    height: 80px;
+    resize: none;
+}
+button {
+    display: inline-block;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border: none;
+    color: #fff;
+    padding: 0 15px;
+    margin: 10px 0 0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    background: #FF8663;
+    border-radius: 3px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #d26d50;
+}
