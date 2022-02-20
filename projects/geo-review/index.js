@@ -1,7 +1,9 @@
 import './map.html';
 import ymaps from 'ymaps';
 import './css/styles.css';
-// console.log(localStorage.clear());
+import balloonTemplate from './templates/balloon.hbs';
+import reviewTemplate from './templates/review.hbs';
+
 ymaps
   .load()
   .then((maps) => {
@@ -22,16 +24,6 @@ ymaps
     });
     // координаты клика по карте
     let currentCoords;
-    // html-шаблон для формы добавления отзыва
-    const htmlForm = [
-      '<div class="form">',
-      '<div class="form__title">Отзыв:</div>',
-      '<input id="fieldName" type="text" placeholder="Укажите ваше имя">',
-      '<input id="fieldLocation" type="text" placeholder="Укажите место">',
-      '<textarea id="fieldReview" placeholder="Оставьте отзыв"></textarea>',
-      '<button type="button" id="btnAdd">Добавить</button>',
-      '</div>',
-    ].join('');
     // счетчик идентификаторов меток
     if (!localStorage.getItem('idCount')) {
       localStorage.setItem('idCount', 0);
@@ -72,7 +64,7 @@ ymaps
     map.events.add('click', function (e) {
       if (!map.balloon.isOpen()) {
         currentCoords = e.get('coords');
-        openBalloon(htmlForm);
+        openBalloon(balloonTemplate());
       } else {
         map.balloon.close();
       }
@@ -103,14 +95,15 @@ ymaps
             coordinates: currentCoords,
           },
           properties: {
-            balloonContentBody: generateHtmlReivew(
-              currentReview.name,
-              currentReview.location,
-              currentReview.date,
-              currentReview.review,
-              true,
-              currentCoords
-            ),
+            balloonContentBody: reviewTemplate({
+              name: currentReview.name,
+              location: currentReview.location,
+              date: currentReview.date,
+              review: currentReview.review,
+              link: 'review__location_link',
+              latitude: currentCoords[0],
+              longitude: currentCoords[1],
+            }),
           },
         };
         dataObj.features.push(currentPlace);
@@ -130,7 +123,8 @@ ymaps
           +event.get('target').dataset.latitude,
           +event.get('target').dataset.longitude,
         ];
-        openBalloon(generateHtmlReviews(currentCoords) + htmlForm);
+        const currentReviews = getReviewsByCoords(currentCoords);
+        openBalloon(balloonTemplate(currentReviews));
       }
     });
 
@@ -138,7 +132,8 @@ ymaps
     objectManager.objects.events.add('click', function (e) {
       currentCoords = objectManager.objects.getById(e.get('objectId')).geometry
         .coordinates;
-      openBalloon(generateHtmlReviews(currentCoords) + htmlForm);
+      const currentReviews = getReviewsByCoords(currentCoords);
+      openBalloon(balloonTemplate(currentReviews));
     });
 
     // клик по кластеру
@@ -166,50 +161,19 @@ ymaps
       return `${dd}.${mm}.${yyyy}`;
     }
 
-    // генерация html-шаблона для одного отзыва
-    function generateHtmlReivew(name, location, date, text, hasLink, coords) {
-      const link = hasLink ? ' review__location_link' : '';
-      const dataCoords = coords
-        ? ' data-latitude="' + coords[0] + '" data-longitude="' + coords[1] + '"'
-        : '';
-      const result = [
-        '<div class="review">',
-        '<div class="review__header">',
-        '<div class="review__name">',
-        name,
-        '</div>',
-        '<div class="review__location' + link + '"' + dataCoords + '>',
-        location,
-        '</div>',
-        '<div class="review__date">',
-        date,
-        '</div>',
-        '</div>',
-        '<div class="review__text">',
-        text,
-        '</div>',
-        '</div>',
-      ];
-      return result.join('');
-    }
-
-    // генерация html-шаблона списка отзывов
-    function generateHtmlReviews(coords) {
-      let htmlReviews = '<div class="reviews">';
+    // получение списка отзывов по координатам места
+    function getReviewsByCoords(coords) {
+      const result = {
+        reviews: [],
+      };
 
       dataReviews.forEach(function (review) {
         if (review.coords[0] === coords[0] && review.coords[1] === coords[1]) {
-          htmlReviews += generateHtmlReivew(
-            review.name,
-            review.location,
-            review.date,
-            review.review
-          );
+          result.reviews.push(review);
         }
       });
-      htmlReviews += '</div>';
 
-      return htmlReviews;
+      return result;
     }
 
     // добавление на карту меток

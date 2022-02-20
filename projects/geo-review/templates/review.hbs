@@ -1,0 +1,23 @@
+<div class="review">
+    <div class="review__header">
+        <div class="review__name">
+            {{name}}
+        </div>
+        <div class="review__location {{link}}"
+            {{#if latitude}}
+                data-latitude="{{latitude}}"
+            {{/if}}
+            {{#if longitude}}
+                data-longitude="{{longitude}}"
+            {{/if}}
+        >
+            {{location}}
+        </div>
+        <div class="review__date">
+            {{date}}
+        </div>
+    </div>
+    <div class="review__text">
+        {{review}}
+    </div>
+</div>

@@ -1,0 +1,21 @@
+{{#if reviews}}
+    <div class="reviews">
+        {{#each reviews}}
+            {{> review}}
+        {{/each}}
+    </div>
+{{/if}}
+
+<div class="form">
+    <div class="form__title">Отзыв:</div>
+    <input id="fieldName"
+           type="text"
+           placeholder="Укажите ваше имя">
+    <input id="fieldLocation"
+           type="text"
+           placeholder="Укажите место">
+    <textarea id="fieldReview"
+              placeholder="Оставьте отзыв"></textarea>
+    <button type="button"
+            id="btnAdd">Добавить</button>
+</div>
