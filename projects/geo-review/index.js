@@ -74,47 +74,57 @@ ymaps
     maps.domEvent.manager.group(document).add(['click'], function (event) {
       // клик по кнопке «добавить»
       if (event.get('target').id === 'btnAdd') {
-        // добавление нового отзыва
-        const currentReview = {
-          id: idCount,
-          coords: currentCoords,
-          name: document.querySelector('#fieldName').value,
-          location: document.querySelector('#fieldLocation').value,
-          review: document.querySelector('#fieldReview').value,
-          date: getCurrentDay(),
+        // список всех полей формы
+        const formFields = {
+          name: document.querySelector('#fieldName'),
+          location: document.querySelector('#fieldLocation'),
+          review: document.querySelector('#fieldReview'),
         };
-        dataReviews.push(currentReview);
-        localStorage.setItem('reviews', JSON.stringify(dataReviews));
 
-        // добавление новой метки в dataObj и на карту
-        const currentPlace = {
-          type: 'Feature',
-          id: idCount,
-          geometry: {
-            type: 'Point',
-            coordinates: currentCoords,
-          },
-          properties: {
-            balloonContentBody: reviewTemplate({
-              name: currentReview.name,
-              location: currentReview.location,
-              date: currentReview.date,
-              review: currentReview.review,
-              link: 'review__location_link',
-              latitude: currentCoords[0],
-              longitude: currentCoords[1],
-            }),
-          },
-        };
-        dataObj.features.push(currentPlace);
-        localStorage.setItem('objects', JSON.stringify(dataObj));
-        renderMap();
+        // проверка полей формы
+        if (isValidForm(formFields)) {
+          // добавление нового отзыва
+          const currentReview = {
+            id: idCount,
+            coords: currentCoords,
+            name: formFields.name.value,
+            location: formFields.location.value,
+            review: formFields.review.value,
+            date: getCurrentDay(),
+          };
+          dataReviews.push(currentReview);
+          localStorage.setItem('reviews', JSON.stringify(dataReviews));
 
-        // обновление счетчика идентификаторов меток
-        idCount++;
-        localStorage.setItem('idCount', idCount);
+          // добавление новой метки в dataObj и на карту
+          const currentPlace = {
+            type: 'Feature',
+            id: idCount,
+            geometry: {
+              type: 'Point',
+              coordinates: currentCoords,
+            },
+            properties: {
+              balloonContentBody: reviewTemplate({
+                name: currentReview.name,
+                location: currentReview.location,
+                date: currentReview.date,
+                review: currentReview.review,
+                link: 'review__location_link',
+                latitude: currentCoords[0],
+                longitude: currentCoords[1],
+              }),
+            },
+          };
+          dataObj.features.push(currentPlace);
+          localStorage.setItem('objects', JSON.stringify(dataObj));
+          renderMap();
 
-        map.balloon.close();
+          // обновление счетчика идентификаторов меток
+          idCount++;
+          localStorage.setItem('idCount', idCount);
+
+          map.balloon.close();
+        }
       }
 
       // клик по локации в карусели отзывов
@@ -180,6 +190,27 @@ ymaps
     function renderMap() {
       objectManager.add(dataObj);
       map.geoObjects.add(objectManager);
+    }
+
+    // проверка полей формы перед отправкой
+    function isValidForm(fieldsObj) {
+      let result = true;
+
+      for (const fieldName in fieldsObj) {
+        const errorClassName = 'is-error';
+        const field = fieldsObj[fieldName];
+        let val = field.value;
+        val = val.trim();
+
+        if (val === '') {
+          field.classList.add(errorClassName);
+          result = false;
+        } else if (field.classList.contains(errorClassName)) {
+          field.classList.remove(errorClassName);
+        }
+      }
+
+      return result;
     }
   })
   .catch((error) => console.log('Failed to load Yandex Maps', error));

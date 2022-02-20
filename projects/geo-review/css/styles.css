@@ -112,6 +112,10 @@ input:focus,
 textarea:focus {
     border-color: #1371C8;
 }
+input.is-error,
+textarea.is-error {
+    border-color: #ec4545;
+}
 textarea {
     height: 80px;
     resize: none;
