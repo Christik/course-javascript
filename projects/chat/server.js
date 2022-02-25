@@ -4,6 +4,10 @@ const wss = new ws.Server({ port: 9090 });
 // список подключенных клиентов
 const usersList = {};
 
+// список сохраненных аватаров, привязанных к нику
+// ключ - ник, значение - аватар
+const avatarsList = {};
+
 wss.on('connection', function connection(ws) {
   // обработчик события message для приема сообщений
   ws.on('message', function message(data) {
@@ -14,13 +18,22 @@ wss.on('connection', function connection(ws) {
     if (message.login) {
       ws.id = message.id;
       ws.userName = message.name;
+      // если у данного пользователя есть сохраненный аватар
+      if (avatarsList[message.name]) {
+        ws.avatarUrl = avatarsList[message.name];
+        message.avatarUrl = ws.avatarUrl;
+      }
 
+      // добавляем пользователя в список подключенных юзеров
       usersList[ws.id] = {
+        id: ws.id,
         name: ws.userName,
+        avatarUrl: ws.avatarUrl,
       };
 
+      // добавляем к сообщению обновленный список подключенных юзеров
+      // и рассылаем всем клиентам
       message.usersList = usersList;
-
       sendAll(message);
     }
 
@@ -33,7 +46,24 @@ wss.on('connection', function connection(ws) {
           name: ws.userName,
           text: message.message,
           date: message.date,
+          avatarUrl: ws.avatarUrl,
         },
+      });
+    }
+
+    // если кто-то из пользователей загрузил аватар
+    if (message.updateAvatar) {
+      // добавляем информацию об аватаре текущему клиенту
+      ws.avatarUrl = message.avatarUrl;
+      // добавляем информацию в список подключенных клиентов
+      usersList[ws.id]['avatarUrl'] = message.avatarUrl;
+      // сохраняем аватар в массив avatarsList
+      avatarsList[ws.userName] = ws.avatarUrl;
+      // рассылаем информацию всем клиентам
+      sendAll({
+        updateAvatar: true,
+        avatarUrl: message.avatarUrl,
+        id: ws.id,
       });
     }
   });

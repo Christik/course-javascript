@@ -90,7 +90,7 @@ b, strong { font-weight: 500; }
    Sidebar
    ========================================================================== */
 
-.sidebar { width: 13rem; border-right: solid 1px #0E1621; padding: .8rem; }
+.sidebar { width: 13rem; border-right: solid 1px #0E1621; padding: .4rem .8rem .8rem; }
 
 /* ==========================================================================
    Page Chat
@@ -99,6 +99,17 @@ b, strong { font-weight: 500; }
 .page-chat { display: flex; height: 100vh; }
 .page-chat__side { }
 .page-chat__content { flex-grow: 1; }
+
+/* ==========================================================================
+   Settings
+   ========================================================================== */
+
+.button-settings { display: block; width: 2.3rem; height: 2.3rem; border: none; background: none; cursor: pointer; position: relative; margin: 0 0 1rem; }
+.button-settings__icon { display: block; width: 40%; height: 40%; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); }
+.button-settings__icon path { fill: #7F91A4; }
+.button-settings__icon path:first-of-type { fill: none !important; }
+
+.button-settings:hover .button-settings__icon path { fill: #60a0e3; }
 
 /* ==========================================================================
    Chat
@@ -139,7 +150,7 @@ b, strong { font-weight: 500; }
    Avatar
    ========================================================================== */
 
-.avatar { width: 1.8rem; height: 1.8rem; border-radius: 50%; position: relative; background: #232F3D; margin: 1.1rem .5rem 0 0; }
+.avatar { width: 1.8rem; height: 1.8rem; border-radius: 50%; position: relative; margin: 1.1rem .5rem 0 0; background: #232F3D no-repeat 50% 50%; background-size: cover; }
 .avatar__no-photo { display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 60%; height: 60%; opacity: .25; }
 .avatar__no-photo path,
 .avatar__no-photo ellipse { fill: #fff; }
@@ -172,3 +183,36 @@ b, strong { font-weight: 500; }
 .user + .user { margin-top: 1rem; }
 .user__avatar { width: 2.3rem; min-width: 2.3rem; height: 2.3rem; margin: 0 .5rem 0 0; }
 .user__name { color: #5188C1; font-weight: 500; font-size: .7rem; }
+
+/* ==========================================================================
+   Button Close
+   ========================================================================== */
+
+.button-close { width: 2.8rem; height: 2.8rem; border: none; background: none; overflow: hidden; position: relative; text-indent: -1000px; cursor: pointer; }
+.button-close:before,
+.button-close:after { content: ''; display: block; width: 1rem; height: .1rem; background: #7F91A4; position: absolute; left: 50%; top: 50%; }
+.button-close:before { transform: translate(-50%,-50%) rotate(-45deg); }
+.button-close:after { transform: translate(-50%,-50%) rotate(45deg); }
+
+.button-close:hover:before,
+.button-close:hover:after { background-color: #60a0e3; }
+
+/* ==========================================================================
+   Modal
+   ========================================================================== */
+
+.backgrop { position: fixed; left: 0; top: 0; right: 0; bottom: 0; z-index: 20; background: #000; opacity: .5; }
+
+.modal { position: fixed; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 18rem; border-radius: .2rem; background: #17212B; padding: 1.6rem 1.8rem 2.1rem; z-index: 21; }
+.modal__title { font-weight: 500; font-size: .9rem; margin: 0 0 2rem; }
+.modal__content { display: flex; align-items: center; }
+.modal__name { font-size: .9rem; font-weight: 500; }
+
+.modal__avatar { width: 4.3rem; height: 4.3rem; position: relative; background-color: #2B5279; overflow: hidden; border-radius: 50%; margin: 0 .75rem 0 0; }
+.modal__avatar label { display: block; position: absolute; top: 0; left: 0; right: 0; bottom: 0; cursor: pointer; overflow: hidden; text-indent: -1000px; }
+.modal__avatar input { opacity: 0; width: 0; height: 0; }
+.modal__avatar svg { display: block; width: 27%; height: 27%; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); }
+.modal__avatar svg path { fill: #fff; }
+.modal__avatar:hover svg { opacity: .5; }
+
+.modal__close { position: absolute; right: 0; top: 0; }
