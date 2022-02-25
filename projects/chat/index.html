@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+</head>
+<body>
+    <div class="page page-login">
+        <div class="page-login__icon">
+            <svg class="page-login__icon__svg"
+                 viewBox="0 0 85 65">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M40 0C34.4772 0 30 4.47715 30 10V33C30 38.5228 34.4772 43 40 43H41V51L48.1111 43H75C80.5228 43 85 38.5228 85 33V10C85 4.47715 80.5228 0 75 0H40ZM78 7H37V36H78V7Z"/>
+                <path d="M32.2909 45.1119V53.8236H4.70908V32.2157H27V27H6.72727C3.0119 27 0 30.3359 0 34.451V51.5882C0 55.7033 3.0119 59.0392 6.72727 59.0392H24.8162L29.6 65V59.0392H30.2727C33.9881 59.0392 37 55.7033 37 51.5882V46.9231L32.2909 45.1119Z"/>
+                <path d="M68.6909 45V55.2242H49.3091V50.2797L46 51.3077V53.9555C46 56.2911 48.1165 58.1844 50.7273 58.1844H51.2V61.5676L54.5616 58.1844H67.2727C69.8835 58.1844 72 56.2911 72 53.9555V45H68.6909Z"/>
+            </svg>
+        </div>
+        <h1 class="page-login__title">
+            Авторизация
+        </h1>
+        <p class="page-login__sub-title">
+            Введите пожалуйста свой ник<br/>
+            для авторизации
+        </p>
+        <div class="page-login__form">
+            <input class="form-field"
+                   type="text"
+                   id="fieldLogin"
+                   placeholder="Введите свой ник">
+            <button type="button"
+                    id="btnLogin"
+                    class="button page-login__form__button">
+                Войти
+            </button>
+        </div>
+    </div><!--.page-->
+
+    <div class="page page-chat is-hidden">
+        <div class="sidebar page-chat__side">
+            <button type="button"
+                    id="btnSettings"
+                    class="button-settings">
+                <svg class="button-settings__icon"
+                     viewBox="0 0 48 48">
+                    <path d="M0 0h48v48H0z"/>
+                    <path d="M38.86 25.95c.08-.64.14-1.29.14-1.95s-.06-1.31-.14-1.95l4.23-3.31c.38-.3.49-.84.24-1.28l-4-6.93c-.25-.43-.77-.61-1.22-.43l-4.98 2.01c-1.03-.79-2.16-1.46-3.38-1.97L29 4.84c-.09-.47-.5-.84-1-.84h-8c-.5 0-.91.37-.99.84l-.75 5.3c-1.22.51-2.35 1.17-3.38 1.97L9.9 10.1c-.45-.17-.97 0-1.22.43l-4 6.93c-.25.43-.14.97.24 1.28l4.22 3.31C9.06 22.69 9 23.34 9 24s.06 1.31.14 1.95l-4.22 3.31c-.38.3-.49.84-.24 1.28l4 6.93c.25.43.77.61 1.22.43l4.98-2.01c1.03.79 2.16 1.46 3.38 1.97l.75 5.3c.08.47.49.84.99.84h8c.5 0 .91-.37.99-.84l.75-5.3c1.22-.51 2.35-1.17 3.38-1.97l4.98 2.01c.45.17.97 0 1.22-.43l4-6.93c.25-.43.14-.97-.24-1.28l-4.22-3.31zM24 31c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
+                </svg>
+            </button>
+
+            <div class="users-list">
+            </div>
+        </div><!--.sidebar-->
+
+        <div class="chat page-chat__content">
+            <div class="chat-head">
+                <div class="chat-head__title">Чат</div>
+                <div class="chat-head__count">Участников <span id="usersCount">0</span></div>
+            </div>
+
+            <div class="chat-content chat__content">
+
+            </div><!--.chat-content-->
+
+            <div class="chat-form">
+            <input class="chat-form__field"
+                      id="fieldMessage"
+                      placeholder="Введите сообщение...">
+                <button type="button"
+                        id="btnSend"
+                        class="button button_small chat-form__send">
+                    Отправить
+                </button>
+            </div>
+        </div><!--.chat-->
+    </div><!--.page-chat-->
+</body>
+</html>

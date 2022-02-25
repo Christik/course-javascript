@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap');
+
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+*:focus { outline: none; }
+*:active, *:hover { outline: 0; }
+body { margin: 0; min-height: 100vh; }
+input,
+button,
+textarea,
+select { font: inherit; }
+button,
+select { text-transform: none; }
+html,
+body,
+button,
+input,
+select,
+textarea {
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   Common styles
+   ========================================================================== */
+
+html { font-size: 20px; }
+body { font-family: 'Ubuntu', sans-serif; line-height: 1.4; color: #fff; background: #17212B; }
+b, strong { font-weight: 500; }
+
+/* ==========================================================================
+   Placeholder
+   ========================================================================== */
+
+[placeholder]::-webkit-input-placeholder { color: #858F98; }
+[placeholder]::-moz-placeholder { color: #858F98; opacity: 1 !important; }
+[placeholder]:-moz-placeholder { color: #858F98; opacity: 1 !important; }
+[placeholder]::-moz-placeholder { color: #858F98; }
+[placeholder]:-ms-input-placeholder { color: #858F98; }
+
+/* ==========================================================================
+   Form Field
+   ========================================================================== */
+
+.form-field { display: block; width: 100%; border: none; border-bottom: solid 1px #465461; color: #fff; font-size: .8rem; line-height: 1.2; font-weight: 300; padding: .6rem .4rem; background: none; font-family: 'Ubuntu', sans-serif; }
+.form-field:focus { border-color: #5188C0; }
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.button { display: inline-block; border: none; background: #5188C1; border-radius: .25rem; height: 2.2rem; line-height: 2.2rem; white-space: nowrap; text-align: center; color: #fff; min-width: 6.5rem; font-family: 'Ubuntu', sans-serif; font-size: .75rem; font-weight: 500; text-transform: uppercase; cursor: pointer; padding: 0 1em; }
+.button:hover { background-color: #60a0e3; }
+
+.button_small { min-width: 5.5rem; height: 1.4rem; line-height: 1.4rem; font-weight: 400; font-size: .7rem; text-transform: none; }
+
+/* ==========================================================================
+   Page
+   ========================================================================== */
+
+.page { position: relative; min-height: 100vh; width: 100%; display: flex; }
+.page.is-hidden { display: none; }
+
+/* ==========================================================================
+   Page Login
+   ========================================================================== */
+
+.page-login { display: flex; flex-direction: column; align-content: center; justify-content: center; text-align: center; padding: 1rem 1rem 4rem; }
+
+.page-login__icon { width: 7rem; height: 7rem; border-radius: 50%; background: #232F3D; margin: 0 auto 1.5rem; position: relative; }
+.page-login__icon__svg { display: block; width: 4.2rem; height: 4.2rem; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); }
+.page-login__icon__svg path {  fill: #5188C0; }
+
+.page-login__title { font-size: 1.2rem; font-weight: 500; margin: 0; }
+.page-login__sub-title { margin: .75rem 0 1.2rem; font-size: .8rem; line-height: 1.2; color: #7F91A4; }
+
+.page-login__form { width: 15rem; margin: 0 auto; }
+.page-login__form__button { margin-top: 2rem; }
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+
+.sidebar { width: 13rem; border-right: solid 1px #0E1621; padding: .4rem .8rem .8rem; }
+
+/* ==========================================================================
+   Page Chat
+   ========================================================================== */
+
+.page-chat { display: flex; height: 100vh; }
+.page-chat__side { }
+.page-chat__content { flex-grow: 1; }
+
+/* ==========================================================================
+   Settings
+   ========================================================================== */
+
+.button-settings { display: block; width: 2.3rem; height: 2.3rem; border: none; background: none; cursor: pointer; position: relative; margin: 0 0 1rem; }
+.button-settings__icon { display: block; width: 40%; height: 40%; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); }
+.button-settings__icon path { fill: #7F91A4; }
+.button-settings__icon path:first-of-type { fill: none !important; }
+
+.button-settings:hover .button-settings__icon path { fill: #60a0e3; }
+
+/* ==========================================================================
+   Chat
+   ========================================================================== */
+
+.chat { display: flex; flex-direction: column; justify-content: space-between; }
+.chat__content { flex-grow: 1; overflow: auto; padding: .8rem; }
+
+/* ==========================================================================
+   Chat Head
+   ========================================================================== */
+
+.chat-head { padding: .6rem .8rem .5rem; border-bottom: solid 1px #0E1621; }
+.chat-head__title { font-size: .7rem; line-height: 1.2; }
+.chat-head__count { color: #7F91A4; font-size: .6rem; line-height: 1.2; margin: .25em 0 0; }
+
+/* ==========================================================================
+   Chat Content
+   ========================================================================== */
+
+.chat-content { background: #0E1621; }
+
+/* ==========================================================================
+   Chat Form
+   ========================================================================== */
+
+.chat-form { display: flex; align-content: center; border-top: solid 1px #0E1621; padding: 0 .8rem 0 0; }
+.chat-form__field { flex-grow: 1; height: 2.7rem; color: #fff; padding: 0 .8rem; background: none; border: none; font-size: .7rem; line-height: 1.2; font-family: 'Ubuntu', sans-serif; }
+.chat-form__send { margin: auto 0; }
+
+/* ==========================================================================
+   Chat Notice
+   ========================================================================== */
+
+.chat-notice {  font-size: .7rem; line-height: 1.4; text-align: center; opacity: .5; margin: 0 0 1rem; }
+
+/* ==========================================================================
+   Avatar
+   ========================================================================== */
+
+.avatar { width: 1.8rem; height: 1.8rem; border-radius: 50%; position: relative; margin: 1.1rem .5rem 0 0; background: #232F3D no-repeat 50% 50%; background-size: cover; }
+.avatar__no-photo { display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 60%; height: 60%; opacity: .25; }
+.avatar__no-photo path,
+.avatar__no-photo ellipse { fill: #fff; }
+
+/* ==========================================================================
+   Message
+   ========================================================================== */
+
+.message { display: flex; align-content: flex-start; }
+.message + .message { margin-top: 1rem; }
+
+.message__avatar { min-width: 1.8rem; }
+.message__content { flex-grow: 1; display: flex; flex-direction: column; align-items: flex-start; }
+.message__author { color: #5188C1; font-weight: 500; font-size: .6rem; min-height: 1.1rem; }
+.message__row { background: #182633; padding: .4rem 2.8rem .4rem .8rem; border-radius: .2rem; position: relative; font-size: .7rem; line-height: 1.4; }
+.message__text { }
+.message__time { opacity: .4; width: 2rem; text-align: right; position: absolute; right: .4rem; bottom: .1rem; }
+
+.message_mine { flex-direction: row-reverse; }
+.message_mine .message__avatar { margin-right: 0; margin-left: .5rem; }
+.message_mine .message__content { align-items: flex-end; }
+.message_mine .message__author { text-align: right; }
+.message_mine .message__row { background-color: #2B5279; }
+
+/* ==========================================================================
+   User
+   ========================================================================== */
+
+.user { display: flex; align-items: center; }
+.user + .user { margin-top: 1rem; }
+.user__avatar { width: 2.3rem; min-width: 2.3rem; height: 2.3rem; margin: 0 .5rem 0 0; }
+.user__name { color: #5188C1; font-weight: 500; font-size: .7rem; }
+
+/* ==========================================================================
+   Button Close
+   ========================================================================== */
+
+.button-close { width: 2.8rem; height: 2.8rem; border: none; background: none; overflow: hidden; position: relative; text-indent: -1000px; cursor: pointer; }
+.button-close:before,
+.button-close:after { content: ''; display: block; width: 1rem; height: .1rem; background: #7F91A4; position: absolute; left: 50%; top: 50%; }
+.button-close:before { transform: translate(-50%,-50%) rotate(-45deg); }
+.button-close:after { transform: translate(-50%,-50%) rotate(45deg); }
+
+.button-close:hover:before,
+.button-close:hover:after { background-color: #60a0e3; }
+
+/* ==========================================================================
+   Modal
+   ========================================================================== */
+
+.backgrop { position: fixed; left: 0; top: 0; right: 0; bottom: 0; z-index: 20; background: #000; opacity: .5; }
+
+.modal { position: fixed; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 18rem; border-radius: .2rem; background: #17212B; padding: 1.6rem 1.8rem 2.1rem; z-index: 21; }
+.modal__title { font-weight: 500; font-size: .9rem; margin: 0 0 2rem; }
+.modal__content { display: flex; align-items: center; }
+.modal__name { font-size: .9rem; font-weight: 500; }
+
+.modal__avatar { width: 4.3rem; height: 4.3rem; position: relative; background-color: #2B5279; overflow: hidden; border-radius: 50%; margin: 0 .75rem 0 0; }
+.modal__avatar label { display: block; position: absolute; top: 0; left: 0; right: 0; bottom: 0; cursor: pointer; overflow: hidden; text-indent: -1000px; }
+.modal__avatar input { opacity: 0; width: 0; height: 0; }
+.modal__avatar svg { display: block; width: 27%; height: 27%; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); }
+.modal__avatar svg path { fill: #fff; }
+.modal__avatar:hover svg { opacity: .5; }
+
+.modal__close { position: absolute; right: 0; top: 0; }
