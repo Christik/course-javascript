@@ -52,6 +52,10 @@ module.exports = {
         options: { cacheDirectory: true },
       },
       {
+        test: /\.hbs$/,
+        loader: 'handlebars-loader',
+      },
+      {
         test: /\.html/,
         include: [path.resolve(__dirname, 'projects')],
         use: [
